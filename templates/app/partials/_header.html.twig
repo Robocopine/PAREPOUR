@@ -1,9 +1,8 @@
 {# templates/app/partials/_header.html.twig -- Header in homepage (Front) #}
-
-<header class="bg-primary bg-gradient text-white">
+<img id="background-video" src="{{ asset('src/img/' ~ app.request.attributes.get("_route") ~ '.jpeg') }}" alt="Supporters background">
+<header class="bg-header bg-gradient text-white border-bottom border-warning border-5">
     <div class="container px-4 text-center">
-        <h1 class="fw-bolder">Welcome to Scrolling Nav</h1>
-        <p class="lead">A functional Bootstrap 5 boilerplate for one page scrolling websites</p>
-        <a class="btn btn-lg btn-light" href="#about">Start scrolling!</a>
+        <h1 class="fw-bolder text-uppercase fs-2">{{ controller_name|trans }}</h1>
+        <p class="lead text-uppercase text-decoration-none fs-6"><a href="{{ path('home') }}" class="text-decoration-none text-light">{% trans %}Accueil{% endtrans %}</a> / {{ controller_name|trans }}</p>
     </div>
 </header>

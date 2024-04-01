@@ -1,17 +1,35 @@
-{# templates/app/page/index.html.twig -- Index of website #}
+{# templates/app/page/index.html.twig -- Index of website (Front) #}
 
 {% extends 'app/base.html.twig' %}
 
 {% block title %} {{ controller_home|trans }} {% endblock %}
 
+{% block background %}
+    <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+        <source src="{{ asset('src/video/header.mp4') }}" type="video/mp4">
+    </video>
+{% endblock %}
+
+{% block header %}
+    <header class="bg-header text-white border-bottom border-warning border-5">
+        <div class="container px-4 text-center">
+        
+            <p class="lead">Soutien aux supporters de l'Union Saint-Gilloise</p>
+            <p class="fw-bolder h1 w-75 px-5 mx-auto mb-5">Paré Pour ASBL</p>
+            <p><img src="{{ asset('src/img/logo.png') }}" width="450px" alt="Logo Paré Pour"></p>
+            <a class="btn btn-lg btn-warning" href="#">{% trans %}Faire un don{% endtrans %}</a>
+        </div>
+    </header>
+{% endblock %}
+
 {% block body %}
 
 <!-- About section-->
-<section id="about">
+<section id="about" class="bg-light">
     <div class="container px-4">
-        <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
-                <h2>About this page</h2>
+        <div class="row gx-lg-4 justify-content-center">
+            <div class="col-xl-6 col-lg-5 col-12">
+                <h2 class="fw-light fs-4 mb-4">Objectifs</h2>
                 <p class="lead">This is a great place to talk about your webpage. This template is purposefully unstyled so you can use it as a boilerplate or starting point for you own landing page designs! This template features:</p>
                 <ul>
                     <li>Clickable nav links that smooth scroll to page sections</li>
@@ -20,14 +38,17 @@
                     <li>Minimal custom CSS so you are free to explore your own unique design options</li>
                 </ul>
             </div>
+            <div class="col-6 text-center">
+                <img src="" alt="Supporters image">
+            </div>
         </div>
     </div>
 </section>
 <!-- Services section-->
-<section class="bg-light" id="services">
+<section class="bg-white" id="services">
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-md-8">
                 <h2>Services we offer</h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
             </div>

@@ -25,18 +25,18 @@ class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/évènements', name: 'evenements')]
-    public function evenements(): Response
+    #[Route('/évènements', name: 'events')]
+    public function events(): Response
     {
-        return $this->render('app/page/evenements.html.twig', [
+        return $this->render('app/page/events.html.twig', [
             'controller_name' => 'Évenements',
         ]);
     }
 
-    #[Route('/réalisations', name: 'realisations')]
-    public function realisations(): Response
+    #[Route('/réalisations', name: 'achievements')]
+    public function achievements(): Response
     {
-        return $this->render('app/page/realisations.html.twig', [
+        return $this->render('app/page/achievements.html.twig', [
             'controller_name' => 'Réalisations',
         ]);
     }
