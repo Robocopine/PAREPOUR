@@ -1,30 +1,28 @@
-<!DOCTYPE html>
+{# templates/admin/user/show.html.twig -- Show a user #}
 
-<title>User</title>
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Membre : {{ controller_name }}{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+<h1 class="h3 my-5 d-inline-block">Membre : {{ controller_name }}</h1>
+<a class="btn btn-primary mt-5 float-right" href="{{ path('admin_user_edit', {'id': user.id}) }}">Modifier</a>
+<div class="card text-center">
+    <div class="card-header">
+        <h2 class="h5">Fiche de renseignement du membre : {{user.name}} </h2>
+    </div>
+    <div class="card-body row text-start p-0">
+        <div class="col-md-6 text-center my-auto"><img src="{{ asset(user.avatar)}}" alt="Avatar {{user.name}}"></div>
+        <div class="col-md-6 border-start p-5 my-auto" >
+            <p>Nom : <b>{{user.name}}</b>
+                
+            </p>
+            <p>Email : {{user.email}} </p>
+        </div>
+    </div>
+    <div class="card-footer text-body-secondary">
+        <a href="{{ path('admin_user_index') }}">Retour à la liste des membres</a>
+    </div>
+</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_admin_user_index') }}">back to list</a>
-
-    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('admin/user/_delete_form.html.twig') }}
 {% endblock %}

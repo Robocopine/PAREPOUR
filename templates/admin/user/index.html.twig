@@ -1,37 +1,50 @@
-<!DOCTYPE html>
+{# templates/admin/user/index.html.twig -- Members index (Admin) #}
 
-<title>User index</title>
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} {{ controller_name|trans }} {% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1 class="my-5">Liste des membres</h1>
 
-    <table class="table">
+    <table class="table table-bordered bg-white">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>actions</th>
+                <th>Nom</th>
+                <th>Rôle</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for user in users %}
+        {% for user in pagination.data|slice(0, pagination.data|length) %}
             <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
+                <td>{{ user.name }}</td>
+                <td >
+                        {{user.roles|first|trans }}
+                </td>
                 <td>
-                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}" class="text-dark pr-2"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}"><i class="fas fa-edit"></i></a>
+                    {% set textDelete, linkDelete, paramsDelete, modalId = "Êtes vous-sûre de supprimer <b>" ~ user.name ~ "</b>?<br> Vous perdrez toutes les informations.", "admin_user_delete", {'id': user.id}, user.id  %}
+                    {{ include("/admin/partials/_delete.html.twig") }}
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{user.id}}">
+                        <span><a class="text-danger"><i class="fas fa-trash"></i></a></span>
+                    </button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="5">Aucun utilisateur enregistré</td>
             </tr>
         {% endfor %}
         </tbody>
+         <tfoot>
+            <tr>
+                <td colspan="5" class="pt-4 pb-0">
+                    {{ pagination.display() }}
+                </td>
+            </tr>
+        </tfoot>
     </table>
 
-    <a href="{{ path('app_admin_user_new') }}">Create new</a>
 {% endblock %}

@@ -13,3 +13,7 @@ home.description : Soutien des supporters de l'Union Saint-Gilloise
 #---------------------------------#
 #------------- ADMIN -------------#
 #---------------------------------#
+
+# MEMBERS
+
+ROLE_WEBMASTER : Webmaster

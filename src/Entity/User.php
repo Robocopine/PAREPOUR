@@ -32,14 +32,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Role::class, mappedBy: 'users')]
     private $roles;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
 
-    #[ORM\Column]
-    private ?bool $ac = null;
-
-    #[ORM\Column]
-    private ?bool $verified = null;
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Avatar $avatar = null;
 
     public function getId(): ?int
     {
@@ -127,6 +127,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -139,26 +151,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isAc(): ?bool
+    public function getAvatar(): ?string
     {
-        return $this->ac;
+        $avatar = $this->avatar;
+        if($avatar == null){
+            $avatar = '/src/img/avatar/unknown.jpg';
+        }else{
+            $avatar = '/src/img/avatar/'.$this->avatar->getName();
+        }
+        return $avatar;
     }
 
-    public function setAc(bool $ac): static
+    public function setAvatar(?Avatar $avatar): static
     {
-        $this->ac = $ac;
-
-        return $this;
-    }
-
-    public function isVerified(): ?bool
-    {
-        return $this->verified;
-    }
-
-    public function setVerified(bool $verified): static
-    {
-        $this->verified = $verified;
+        $this->avatar = $avatar;
 
         return $this;
     }
