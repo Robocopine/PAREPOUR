@@ -38,9 +38,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Avatar $avatar = null;
-
+    /* #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+     * private ?Avatar $avatar = null;
+    */
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -151,22 +152,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAvatar(): ?string
-    {
-        $avatar = $this->avatar;
-        if($avatar == null){
-            $avatar = '/src/img/avatar/unknown.jpg';
-        }else{
-            $avatar = '/src/img/avatar/'.$this->avatar->getName();
-        }
-        return $avatar;
-    }
-
-    public function setAvatar(?Avatar $avatar): static
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
+    /* public function getAvatar(): ?string
+     *{
+     *   $avatar = $this->avatar;
+     *   if($avatar == null){
+     *       $avatar = '/src/img/avatar/unknown.jpg';
+     *   }else{
+     *       $avatar = '/src/img/avatar/'.$this->avatar->getName();
+     *   }
+     *   return $avatar;
+     *}
+     *
+     *
+     * public function setAvatar(?Avatar $avatar): static
+     * {
+     *   $this->avatar = $avatar;
+     *
+     *   return $this;
+     *}
+    */
 
 }

@@ -25,30 +25,31 @@ class UserType extends AbstractType
             ->add('title', TextType::class, ['label' => 'Email', 'attr' => [
                 'placeholder' => 'Entrez une adresse email'
             ]])
-            ->add('avatar', FileType::class, [
-                'label' => 'Avatar (jpg, png)',
-                'attr' => ['placeholder' => 'Téléchargez votre avatar'],
-
-                // unmapped means that this field is not associated to any entity property
-                'mapped' => false,
-
-                // make it optional so you don't have to re-upload the PDF file
-                // everytime you edit the Product details
-                'required' => false,
-
-                 // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpeg',
-                            'image/png',
-                        ],
-                        'mimeTypesMessage' => 'Le fichier doit être au format jpg, jpeg ou png',
-                    ])
-                ],
-            ])
+            /* ->add('avatar', FileType::class, [
+             *   'label' => 'Avatar (jpg, png)',
+             *   'attr' => ['placeholder' => 'Téléchargez votre avatar'],
+             *
+             *   // unmapped means that this field is not associated to any entity property
+             *   'mapped' => false,
+             *
+             *   // make it optional so you don't have to re-upload the PDF file
+             *   // everytime you edit the Product details
+             *   'required' => false,
+             *
+             *   // unmapped fields can't define their validation using annotations
+             *   // in the associated entity, so you can use the PHP constraint classes
+             *  'constraints' => [
+             *       new File([
+             *           'maxSize' => '1024k',
+             *           'mimeTypes' => [
+             *              'image/jpeg',
+             *              'image/png',
+             *           ],
+             *           'mimeTypesMessage' => 'Le fichier doit être au format jpg, jpeg ou png',
+             *       ])
+             *   ],
+             *])
+            */
         ;
     }
 
