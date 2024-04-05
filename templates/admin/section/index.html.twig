@@ -1,0 +1,50 @@
+{# templates/admin/section/index.html.twig -- Section index (Admin) #}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} {{ controller_name|trans }} {% endblock %}
+
+{% block body %}
+    <div class="col-12">
+        <h1 class="my-5 d-inline-block">Liste des sections</h1> 
+        <div class="d-inline-block float-right mt-5"><a href="{{ path('admin_section_new') }}" class="btn btn-primary">+</a></div>
+    </div>
+    <table class="table table-bordered bg-white">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for section in pagination.data %}
+            <tr>
+                <td>{{ section.id }}</td>
+                <td >{{ section.title|trans }}</td>
+                <td>
+                    <a href="{{ path('admin_section_show', {'id': section.id}) }}" class="text-dark pr-2"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('admin_section_edit', {'id': section.id}) }}"><i class="fas fa-edit"></i></a>
+                    {% set textDelete, linkDelete, paramsDelete, modalId = "Êtes vous-sûre de supprimer <b>" ~ section.title ~ "</b>?<br> Vous perdrez toutes les informations.", "admin_section_delete", {'id': section.id}, section.id  %}
+                    {{ include("/admin/partials/_delete.html.twig") }}
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{section.id}}">
+                        <span><a class="text-danger"><i class="fas fa-trash"></i></a></span>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune section enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+         <tfoot>
+            <tr>
+                <td colspan="5" class="pt-4 pb-0">
+                    {{ pagination.display() }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    
+{% endblock %}

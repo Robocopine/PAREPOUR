@@ -2,9 +2,10 @@
 
 namespace App\Controller\App;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\PaginationService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PageController extends AbstractController
 {
@@ -14,6 +15,8 @@ class PageController extends AbstractController
         return $this->render('app/page/index.html.twig', [
             'controller_name' => 'Accueil',
             'controller_home' => 'home.description',
+            'resume' => '',
+            'goals' => ''
         ]);
     }
 
@@ -25,11 +28,17 @@ class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/évènements', name: 'events')]
-    public function events(): Response
+    #[Route('/évènements/{page<\d+>?1}', name: 'events')]
+    public function events(PaginationService $pagination, $page): Response
     {
+        //$pagination->setEntityClass(Event::class)
+        //        ->setLimit(9)
+        //        ->setPage($page);
+        //;
+
         return $this->render('app/page/events.html.twig', [
             'controller_name' => 'Évenements',
+            'pagination' => $pagination,
         ]);
     }
 

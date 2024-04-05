@@ -5,22 +5,22 @@
 {% block title %}{{ controller_name }}{% endblock %}
 
 {% block body %}
-    <h1 class="my-5">Edit User</h1>
+    <h1 class="my-5">Modifier un membre</h1>
 
-    {{ include('admin/partials/_form.html.twig', {'button_label': 'Modifier'}) }}
+    {{ include('admin/partials/_form.html.twig', {'button_label': 'Modifier', 'title': 'Fiche de renseignement du membre : ' ~ user.name  }) }}
 
     <a href="{{ path('admin_user_index') }}">Retour à la liste des membres</a>
 
-        <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                bsCustomFileInput.init()
-            })
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        })
 
-            $(document).on('change', '.custom-file-input', function () {
-                let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
-                $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
-            });
-        </script>
+        $(document).on('change', '.custom-file-input', function () {
+            let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+            $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+        });
+    </script>
         
 {% endblock %}
