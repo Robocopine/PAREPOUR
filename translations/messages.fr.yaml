@@ -17,3 +17,24 @@ home.description : Soutien des supporters de l'Union Saint-Gilloise
 # MEMBERS
 
 ROLE_WEBMASTER : Webmaster
+
+#---------------------------------#
+#------------- FORM --------------#
+#---------------------------------#
+
+
+# Registration
+
+user.email.label : Email
+user.email.placeholder : Entrez votre adresse email
+user.name.label : Nom (Complet)
+user.name.placeholder : Entrez votre nom complet
+user.password.invalidMessage : Entrez un mot de passe valide
+user.password.label : Mot de passe
+user.password.placeholder : Entrez un mot de passe
+user.passwordConfirm.label : Confirmation mot de passe
+user.passwordConfirm.placeholder : Confirmez votre mot de passe à l'identique
+user.password.notBlank : Vous devez remplir le champ mot de passe
+user.password.length : Votre mot de passe est trop court
+user.agreeTerms.label : Termes et conditions
+user.agreeTerms.message : Vous devez accepter les termes et conditions du site
