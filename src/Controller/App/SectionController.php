@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/section', name: 'app_section_')]
+#[Route('/section', name: 'section_')]
 class SectionController extends AbstractController
 {
     #[Route('/{id}/modifier', name: 'edit', methods: ['GET', 'POST'])]
@@ -23,7 +23,7 @@ class SectionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_section_close', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('section_close', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('app/partials/_sectionEdit.html.twig', [
