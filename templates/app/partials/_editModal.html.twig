@@ -1,0 +1,14 @@
+{# templates/app/partials/_edit.html.twig -- edit form (Front) #}
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal{{modalId}}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" id="editModal">
+            <div class="modal-body p-5">
+                <iframe frameborder="0" scrolling="yes" border="0" cellspacing="0" width="100%" src="
+                    {{ path(linkUpdate, {'id' : modalId})}}">
+                </iframe>
+            </div>
+        </div>
+  </div>
+</div>

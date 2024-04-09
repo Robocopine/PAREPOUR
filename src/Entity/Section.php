@@ -60,7 +60,7 @@ class Section
         return $this->contentNl;
     }
 
-    public function setContentNl(string $contentNl): static
+    public function setContentNl(string $contentNl = null): self
     {
         $this->contentNl = $contentNl;
 
@@ -72,7 +72,7 @@ class Section
         return $this->contentEn;
     }
 
-    public function setContentEn(?string $contentEn): static
+    public function setContentEn(?string $contentEn = null): self
     {
         $this->contentEn = $contentEn;
 

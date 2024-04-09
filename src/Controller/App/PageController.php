@@ -3,6 +3,7 @@
 namespace App\Controller\App;
 
 use App\Service\PaginationService;
+use App\Repository\SectionRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,13 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PageController extends AbstractController
 {
     #[Route('', name: 'home')]
-    public function index(): Response
+    public function index(SectionRepository $repository): Response
     {
+        $resume = $repository->findOneBy(['title' => 'resume']);
+        $goals = $repository->findOneBy(['title' => 'goals']);
         return $this->render('app/page/index.html.twig', [
             'controller_name' => 'Accueil',
             'controller_home' => 'home.description',
-            'resume' => '',
-            'goals' => ''
+            'resume' => $resume,
+            'goals' => $goals
         ]);
     }
 

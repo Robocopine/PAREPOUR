@@ -1,0 +1,17 @@
+{# templates/app/partials/_sectionEdit.html.twig -- iframe of edit section (Front) #}
+
+{% extends 'app/partials/_baseEmpty.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <p class="text-center">
+            <button type="submit" class="btn btn-primary mt-3">Modifier</button>
+            <button type="button" onclick="closeIframe()" class="btn btn-dark mt-3">Annuler</button>
+        </p>
+    {{ form_end(form) }}
+
+    <script>
+        function closeIframe(){ window.top.location.reload()}
+    </script>
+{% endblock body %}

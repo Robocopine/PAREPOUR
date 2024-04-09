@@ -14,17 +14,20 @@ class SectionType extends AbstractType
     {
         $builder
             ->add('contentFr', TextareaType::class, ['label' => 'Texte en français', 'attr' => [
-                'required'   => false,
                 'placeholder' => 'Entrez le contenu en français'
             ]])
-            ->add('contentNl', TextareaType::class, ['label' => 'Texte en néerlandais', 'attr' => [
-                'required'   => false,
-                'placeholder' => 'Entrez le contenu en néerlandais'
-            ]])
-            ->add('contentEn', TextareaType::class, ['label' => 'Texte en anglais', 'attr' => [
-                'required'   => false,
-                'placeholder' => 'Entrez le contenu en anglais'
-            ]])
+            ->add('contentNl', TextareaType::class, ['label' => 'Texte en néerlandais',
+                'required' => false,
+                'attr' => [
+                    'placeholder' => 'Entrez le contenu en néerlandais'
+                ]
+            ])
+            ->add('contentEn', TextareaType::class, ['label' => 'Texte en anglais', 
+                'required' => false,
+                'attr' => [ 
+                    'placeholder' => 'Entrez le contenu en anglais'
+                ]
+            ])
         ;
     }
 

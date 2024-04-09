@@ -1,0 +1,10 @@
+{# templates/app/partials/_sectionEdit.html.twig -- iframe of edit section (Front) #}
+
+{% extends 'app/partials/_baseEmpty.html.twig' %}
+
+{% block body %}
+    <script>
+        window.setTimeout(closeIframe(), 1);
+        function closeIframe(){ window.top.location.reload()}
+    </script>
+{% endblock %}
