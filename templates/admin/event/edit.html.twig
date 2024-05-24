@@ -1,0 +1,15 @@
+{# templates/admin/event/edit.html.twig -- Edit a event (Admin)  #}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-5">Modifier l'évenement {{ event.title }}</h1>
+
+    {{ include('admin/partials/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('admin_event_index') }}">Retour à la liste des évènements</a>
+
+{% endblock %}

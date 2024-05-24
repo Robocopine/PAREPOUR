@@ -20,7 +20,7 @@
         {% block header %}{{ include("app/partials/_header.html.twig") }}{% endblock %}
         {% block body %}{% endblock %}
         <!-- Contact section-->
-        {{ include("app/partials/_contact.html.twig") }}
+        {{ vars.display() }}
         <!-- Footer-->
         {{ include("app/partials/_footer.html.twig") }}
 

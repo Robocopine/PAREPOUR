@@ -10,15 +10,41 @@
 <section id="about" class="bg-light">
     <div class="container px-4">
         <div class="row gx-4 justify-content-center">
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                 <h2 class="fw-light fs-4 mb-5">L'association</h2>
+                {% if app.user %}
+                    {% set user = app.user %}
+                    {% if "ROLE_WEBMASTER" in user.roles %}
+                        {% set linkUpdate = "section_edit"  %}
+                        <p class="text-end mt-2">
+                            <button type="button" class="btn btn-primary float-xl-right position-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{about.id}}">
+                                <span><i class="fas fa-edit"></i></a></span>
+                            </button>
+                        </p>
+                        {% include("app/partials/_editModal.html.twig") with {'modalId': about.id } %}
+                    {% endif %}
+                {% endif %}
                 <p>
-                    L'ASBL "Parepour" est une association créée <b>PAR</b> des supporters de l'Union <b>POUR</b> les <b>supporters de l'Union</b>.
-                    Elle a pour but d'apporter une aide financière à des supporters qui subissent des accidents de la vie et qui n'ont pas les moyens d'y faire face seuls.
+                    <img src="{{ asset('src/img/about-2.jpeg') }}" alt="Supporters image" width="300px" class="img-fluid float-end mx-4 mb-4 rounded" />
+                    {{ about.contentFr|raw }}
                 </p>
-            </div>
-            <div class="col-lg-4 text-center">
-                <img src="" alt="Supporters image">
+                <br>
+                <h2 id="notice" class="fw-light fs-4 mb-5">Mentions légales</h2>
+                {% if app.user %}
+                    {% set user = app.user %}
+                    {% if "ROLE_WEBMASTER" in user.roles %}
+                        {% set linkUpdate = "section_edit"  %}
+                        <p class="text-end mt-2">
+                            <button type="button" class="btn btn-primary float-xl-right position-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{notice.id}}">
+                                <span><i class="fas fa-edit"></i></a></span>
+                            </button>
+                        </p>
+                        {% include("app/partials/_editModal.html.twig") with {'modalId': notice.id } %}
+                    {% endif %}
+                {% endif %}
+                <p>
+                    {{ notice.contentFr|raw }}
+                </p>
             </div>
         </div>
     </div>

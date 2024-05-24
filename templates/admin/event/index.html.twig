@@ -1,0 +1,52 @@
+{# templates/admin/event/index.html.twig -- Event index (Admin) #}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} {{ controller_name|trans }} {% endblock %}
+
+{% block body %}
+    <div class="col-12">
+        <h1 class="my-5 d-inline-block">Liste des évènements</h1> 
+        <div class="d-inline-block float-right mt-5"><a href="{{ path('admin_event_new') }}" class="btn btn-primary">+</a></div>
+    </div>
+
+    <table class="table table-bordered bg-white">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for event in pagination.data %}
+            <tr>
+                <td>{{ event.id }}</td>
+                <td>{{ event.titleFr }}</td>
+                <td>{{ event.dateTimeStart|date('d-m-Y') }}</td>
+                <td>
+                    <a href="{{ path('admin_event_show', {'id': event.id}) }}" class="text-dark pr-2"><i class="fas fa-eye"></i></a>
+                    <a href="{{ path('admin_event_edit', {'id': event.id}) }}"><i class="fas fa-edit"></i></a>
+                    {% set textDelete, linkDelete, paramsDelete, modalId = "Êtes vous-sûre de supprimer <b>" ~ event.title ~ "</b>?<br> Vous perdrez toutes les informations.", "admin_event_delete", {'id': event.id}, event.id  %}
+                    {{ include("/admin/partials/_delete.html.twig") }}
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#deleteModal{{event.id}}">
+                        <span><a class="text-danger"><i class="fas fa-trash"></i></a></span>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Aucun évenement enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="pt-4 pb-0">
+                    {{ pagination.display() }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}

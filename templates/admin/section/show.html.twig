@@ -10,20 +10,20 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ section.id }}</td>
+                <th>Titre</th>
+                <td>{{ section.title|trans }}</td>
             </tr>
             <tr>
-                <th>ContentFr</th>
-                <td>{{ section.contentFr }}</td>
+                <th>Contenu en français</th>
+                <td>{{ section.contentFr|raw }}</td>
             </tr>
             <tr>
-                <th>ContentNl</th>
-                <td>{{ section.contentNl }}</td>
+                <th>Contenu en néerlandais</th>
+                <td>{{ section.contentNl|raw }}</td>
             </tr>
             <tr>
-                <th>ContentEn</th>
-                <td>{{ section.contentEn }}</td>
+                <th>Contenu en anglais</th>
+                <td>{{ section.contentEn|raw }}</td>
             </tr>
         </tbody>
     </table>

@@ -20,8 +20,11 @@ ROLE_WEBMASTER : Webmaster
 
 # SECTION
 
-Resume : Présentation
-Goals : Objectifs
+resume : Présentation
+goals : Objectifs
+contact : Contact
+about : À propos
+notice : Mentions légales
 
 #---------------------------------#
 #------------- FORM --------------#

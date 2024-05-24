@@ -1,0 +1,15 @@
+{# templates/admin/achievement/edit.html.twig -- Edit a achievement (Admin)  #}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}{{ controller_name }}{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-5">Modifier la réalisation {{ achievement.title }}</h1>
+
+    {{ include('admin/partials/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('admin_achievement_index') }}">Retour à la liste des réalisations</a>
+
+{% endblock %}

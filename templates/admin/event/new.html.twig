@@ -1,0 +1,13 @@
+{# templates/admin/event/new.html.twig -- Create a event (Admin)  #}
+
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} {{ controller_name }} {% endblock %}
+
+{% block body %}
+    <h1 class="my-5">Créer un évenement</h1>
+
+    {{ include('admin/partials/_form.html.twig', {'button_label': 'Créer', 'title': 'Nouvel évenement'}) }}
+
+    <a href="{{ path('admin_event_index') }}">Retour à la liste des évenements</a>
+{% endblock %}

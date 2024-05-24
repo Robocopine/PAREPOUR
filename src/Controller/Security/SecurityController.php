@@ -3,6 +3,7 @@
 namespace App\Controller\Security;
 
 use App\Entity\User;
+use App\Service\VarsService;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,11 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class SecurityController extends AbstractController
 {
+    public function __construct(VarsService $vars)
+    {
+        $this->vars = $vars;
+    }
+    
     #[Route('/inscription', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
@@ -40,6 +46,7 @@ class SecurityController extends AbstractController
         return $this->render('security/register.html.twig', [
             'registrationForm' => $form->createView(),
             'controller_name' => 'Inscription',
+            'vars' => $this->vars,
         ]);
     }
     
@@ -56,6 +63,7 @@ class SecurityController extends AbstractController
             'last_username' => $lastUsername,
             'error' => $error,
             'controller_name' => 'Connexion',
+            'vars' => $this->vars,
         ]);
     }
 

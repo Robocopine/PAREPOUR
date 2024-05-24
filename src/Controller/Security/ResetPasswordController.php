@@ -3,22 +3,23 @@
 namespace App\Controller\Security;
 
 use App\Entity\User;
-use App\Form\ChangePasswordFormType;
-use App\Form\ResetPasswordRequestFormType;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
+use App\Service\VarsService;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use App\Form\ChangePasswordFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\ResetPasswordRequestFormType;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
-use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 #[Route('/reset-password', name: 'forgot_password_')]
 class ResetPasswordController extends AbstractController
@@ -27,8 +28,10 @@ class ResetPasswordController extends AbstractController
 
     public function __construct(
         private ResetPasswordHelperInterface $resetPasswordHelper,
-        private EntityManagerInterface $entityManager
+        private EntityManagerInterface $entityManager,
+        VarsService $vars
     ) {
+        $this->vars = $vars;
     }
 
     /**
@@ -51,6 +54,7 @@ class ResetPasswordController extends AbstractController
         return $this->render('security/reset_password/request.html.twig', [
             'requestForm' => $form->createView(),
             'controller_name' => 'Réinitisaliser mot de passe',
+            'vars' => $this->vars,
         ]);
     }
 
@@ -69,6 +73,7 @@ class ResetPasswordController extends AbstractController
         return $this->render('security/reset_password/check_email.html.twig', [
             'resetToken' => $resetToken,
             'controller_name' => 'Mot de passe envoyé par email',
+            'vars' => $this->vars,
         ]);
     }
 
@@ -130,6 +135,7 @@ class ResetPasswordController extends AbstractController
         return $this->render('security/reset_password/reset.html.twig', [
             'resetForm' => $form->createView(),
             'controller_name' => 'Vérifier mot de passe',
+            'vars' => $this->vars,
         ]);
     }
 

@@ -1,5 +1,22 @@
 {# templates/app/partials/_footer.html.twig -- Footer of website (Front) #}
 
-<footer class="py-5 bg-dark">
-    <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+<footer class="py-4 bg-dark container-fluid text-light p-0">
+    <div class="row pt-md-2">
+        <div class="col-md-4 text-light text-center px-5 pt-md-2"><p><i class="fa-solid fa-route pe-2"></i> <u> Siège social PAREPOUR</u> : <br/><a class="btn btn-dark text-start" target="_blank" href="https://maps.app.goo.gl/AbQadoHutV8KSapUA">Drève des Châtaigniers 22<br>7850 Enghien</a></p></div>
+        <hr class="d-md-none">
+        <div class="col-md-4 px-5 text-center">
+            <p><a class="btn btn-dark" href="{{ path('about')}}#notice">Mentions légales</a></p>
+            <p><a class="btn btn-dark"  href="">Conditions d'utilisations</a></p>
+        </div>
+        <div class="col-md-4 px-5 text-center text-md-end"><br class="d-md-block d-none"/><i class="fa-solid fa-envelope"></i> <a href="mailto:info@parepour.be" class="btn btn-dark">info@parepour.be</a></div>
+    </div>
+    <hr>
+    <div class="row text-center pt-3 px-5">
+        <p> En utilisant ce site, vous acceptez les conditions d'utilisation, la politique de confidentialité et l'utilisation des cookies</p>
+    </div>
+    <hr>
+    <div class="row text-center pt-3">
+    <div class="col-6">© 2024 Parepour tous droits réservés</div>
+    <div class="col-6">Site développé par <a class="btn btn-dark" target="_blank" href="">"Un coup de pouce pour Luna"</a></div>
+    </div>
 </footer>

@@ -14,13 +14,9 @@
     <header class="bg-header text-white border-bottom border-warning border-5">
         <div class="container px-4 text-center">
         
-            <p class="lead">Soutien aux supporters de l'Union Saint-Gilloise</p>
-            <p class="fw-bolder h1 w-75 px-5 mx-auto mb-5">ASBL</p>
             <div class="mx-auto pb-3 content-logo"><img src="{{ asset('src/img/logo.png') }}" class="img-fluid" alt="Logo PAREPOUR"></div>
-            <!-- Button trigger actionModal -->
-            <button type="button" class="btn btn-lg btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                {% trans %}Faire un don{% endtrans %}
-            </button>
+            <p class="fw-bolder h1 w-75 px-5 mx-auto">ASBL</p>
+            <p class="lead  mb-5">Ensemble dans le stade et dans les coups durs</p>
         </div>
     </header>
 {% endblock %}
@@ -29,13 +25,13 @@
 
 <!-- Resume section -->
 <section id="resume" class="bg-light">
-    <div class="container px-4">
+    <div class="container px-lg-5">
         <div class="row gx-lg-4 justify-content-center">
-            <div class="col-xl-6 col-lg-5 col-12">
+            <div class="col-lg-10 col-12">
                 {% if app.user %}
                     {% set user = app.user %}
                     {% if "ROLE_WEBMASTER" in user.roles %}
-                        {% set linkUpdate = "app_section_edit"  %}
+                        {% set linkUpdate = "section_edit"  %}
                         <p class="text-end mt-2">
                             <button type="button" class="btn btn-primary float-xl-right position-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{resume.id}}">
                                 <span><i class="fas fa-edit"></i></a></span>
@@ -45,17 +41,15 @@
                     {% endif %}
                 {% endif %}
                 <h2 class="fw-light fs-4 mb-4">Présentation</h2>
-                <p>{{ resume.contentFr|raw }}</p>
-            </div>
-            <div class="col-6 text-center">
-                <img src="" alt="Supporters image">
+                <p><img src="{{ asset('src/img/presentation.jpeg') }}" alt="Supporters image" width="400px" class="img-fluid float-md-end  mx-md-4 mx-auto mb-4 rounded">{{ resume.contentFr|raw }}</p>
+                
             </div>
         </div>
     </div>
 </section>
 <!-- Goals section-->
 <section class="bg-white" id="services">
-    <div class="container px-4">
+    <div class="container px-lg-5">
         <div class="row gx-4 justify-content-center">
             <div class="col-md-8">
                 {% if app.user %}

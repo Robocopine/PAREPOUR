@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<title>Achievement</title>
+
+{% block body %}
+    <h1>Achievement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ achievement.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ achievement.title }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ achievement.date ? achievement.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ achievement.amount }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionFr</th>
+                <td>{{ achievement.descriptionFr }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionNl</th>
+                <td>{{ achievement.descriptionNl }}</td>
+            </tr>
+            <tr>
+                <th>DescriptionEn</th>
+                <td>{{ achievement.descriptionEn }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('achievement_index') }}">Retour</a>
+
+    <a href="{{ path('achievement_edit', {'id': achievement.id}) }}">Modifier</a>
+
+{% endblock %}

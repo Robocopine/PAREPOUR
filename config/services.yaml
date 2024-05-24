@@ -26,5 +26,11 @@ services:
         arguments :
             $templatePath: 'admin/partials/_pagination.html.twig'
 
+    # Get vars for all pages in front
+    # content display of contact
+    App\Service\VarsService:
+        arguments :
+            $templatePath: 'app/partials/_contact.html.twig'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
