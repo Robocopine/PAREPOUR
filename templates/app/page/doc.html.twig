@@ -1,0 +1,21 @@
+{# templates/app/page/doc.html.twig --  Display Doc #}
+
+{% extends 'app/base.html.twig' %}
+
+{% block title %} {{ controller_name|trans }} {% endblock %}
+
+{% block body %}
+
+<section class="page-section bg-white border-top border-primary border-5 px-sm-0 px-4" id="doc">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 px-2">
+                <h2 class="fw-light fs-4 mb-5">{{ docName }}</h1>
+            <div>
+            <div class="col-12 embed-responsive embed-responsive-21by9 text-center">
+                <object class="embed-responsive-item w-100" data="{{ asset( doc ) }}"  style="height: 1000px;"></object>
+            <div>
+        <div>
+    </div>
+</section>
+{% endblock %}

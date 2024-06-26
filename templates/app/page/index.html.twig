@@ -24,47 +24,50 @@
 {% block body %}
 
 <!-- Resume section -->
-<section id="resume" class="bg-light">
-    <div class="container px-lg-5">
+<section id="resume" class="bg-light px-sm-0 px-4">
+    <div class="container">
         <div class="row gx-lg-4 justify-content-center">
-            <div class="col-lg-10 col-12">
+            <div class="col-xl-9 col-lg-10 ">
                 {% if app.user %}
                     {% set user = app.user %}
                     {% if "ROLE_WEBMASTER" in user.roles %}
                         {% set linkUpdate = "section_edit"  %}
                         <p class="text-end mt-2">
-                            <button type="button" class="btn btn-primary float-xl-right position-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{resume.id}}">
+                            <button type="button" class="btn btn-primary float-xl-right position-sm-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{resume.id}}">
                                 <span><i class="fas fa-edit"></i></a></span>
                             </button>
                         </p>
                         {% include("app/partials/_editModal.html.twig") with {'modalId': resume.id } %}
                     {% endif %}
                 {% endif %}
-                <h2 class="fw-light fs-4 mb-4">Présentation</h2>
-                <p><img src="{{ asset('src/img/presentation.jpeg') }}" alt="Supporters image" width="400px" class="img-fluid float-md-end  mx-md-4 mx-auto mb-4 rounded">{{ resume.contentFr|raw }}</p>
+                <h2 class="fw-light fs-4 mb-5">Présentation</h2>
+                <div>
+                    <img src="{{ asset('src/img/presentation.jpeg') }}" alt="Supporters image" width="400px" class="img-fluid float-md-end d-block mx-md-4 mx-auto mb-4 rounded"/>
+                    <div class="text-justify">{{ resume.contentFr|raw }}</div>
+                </div>
                 
             </div>
         </div>
     </div>
 </section>
 <!-- Goals section-->
-<section class="bg-white" id="services">
-    <div class="container px-lg-5">
-        <div class="row gx-4 justify-content-center">
-            <div class="col-md-8">
+<section class="bg-white px-sm-0 px-4" id="services">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class=" col-xl-9 col-lg-10 ">
                 {% if app.user %}
                     {% set user = app.user %}
                     {% if "ROLE_WEBMASTER" in user.roles %}
                         <p class="text-end mt-2">
-                            <button type="button" class="btn btn-primary float-xl-right position-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{goals.id}}">
+                            <button type="button" class="btn btn-primary float-xl-right position-sm-absolute" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{goals.id}}">
                                 <span><i class="fas fa-edit"></i></a></span>
                             </button>
                         </p>
                         {% include("app/partials/_editModal.html.twig") with {'modalId': goals.id } %}
                     {% endif %}
                 {% endif %}
-                <h2 class="fw-light fs-4 mb-4">Objectifs</h2>
-                <p>{{ goals.contentFr|raw }}</p>
+                <h2 class="fw-light fs-4 mb-5">Objectifs</h2>
+                <div class="text-justify">{{ goals.contentFr|raw }}</div>
             </div>
         </div>
     </div>

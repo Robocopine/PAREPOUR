@@ -15,6 +15,7 @@
     <body id="page-top">
         {% block background %}{% endblock %}
         <!-- Navigation-->
+        <div class="container-fluid px-0">
         {{ include("app/partials/_navbar.html.twig") }}
         <!-- Header-->
         {% block header %}{{ include("app/partials/_header.html.twig") }}{% endblock %}
@@ -23,7 +24,8 @@
         {{ vars.display() }}
         <!-- Footer-->
         {{ include("app/partials/_footer.html.twig") }}
-
+        {{ include("app/partials/_donate.html.twig") }}
+        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         {% block javascripts %}

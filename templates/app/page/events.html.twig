@@ -7,9 +7,14 @@
 {% block body %}
     <section id="about" class="bg-white bcontainer-fluid">
         <div class="row gx-lg-4 justify-content-center">
-            <div class="col-4 row bg-events rounded">
-                <div class="col-6"><img src="" alt="Illustration event"/></div>
-                <div class="col-6">test</div>
+            <div class="col-6 row bg-events rounded px-0">
+                <div class="col-6 img-event px-0"><img src="{{ asset('src/img/event/event1.png') }}" alt="Illustration event" class="img-fluid"/></div>
+                <div class="col-6 py-2">
+                    <p><i class="fa-regular fa-calendar text-primary me-2"></i> 01/01/2000</p>
+                    <p>Titre</p>
+                    <p>Resume</p>
+                    <p class="position-bottom">Heure et lieu</p>
+                </div>
             </div>
         </div>
     </section>

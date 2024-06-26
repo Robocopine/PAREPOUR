@@ -1,17 +1,88 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">{% trans %}Donate{% endtrans %}/h1>
+        <h1 class="modal-title fs-5" id="donateModalLabel">{% trans %}Faire un don{% endtrans %}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="payment-details">
+          <h5>{% trans %}Information de paiement{% endtrans %}</h5>
+          <p>
+            <b>Montant à payer :</b><br>
+            <span>Au choix</span>
+          </p>
+          <p>
+            <b>IBAN</b><br>
+            <span>BE49 3632 2770 0971</span>
+          </p>
+          <p>
+            <b>Bénéficiaire</b><br>
+            <span>PAREPOUR ASBL</span>
+          </p>
+          <p>
+            <b>Communication</b><br>
+            <span>Nom + prénom + PAREPOUR ASBL</span>
+          </p>
+          <div class="alert alert-secondary text-justify" role="alert">
+            <div class="bg-light rounded rounded-circle d-inline-block text-center me-2 float-start" style="width:20px; height:20px; font-size:11px;">
+              <i class="fa-solid fa-info"></i>
+            </div>
+            Vous pouvez effectuer un virement sans remplir le formulaire en mentionnant Anonyme à la place de Nom + Prénom si vous ne souhaitez pas partager vos coordonnées.</div> <!-- {{ "now"|date_modify("+5 day")|date("d/m/Y") }} -->
+        </div>
+        <div class="">
+          <form id="donatorForm" name="donatorForm" action="{{ path('donate') }}" method="post">
+            <div class="row align-items-stretch mb-5">
+              <div class="col-md-6">
+                <div class="form-group mb-3">
+                  <!-- Name input-->
+                  <input class="form-control" id="name" name="name" type="text" placeholder="Votre nom complet *" data-sb-validations="required" required/>
+                  <div class="invalid-feedback" data-sb-feedback="name:required">Vous devez entrer votre nom complet</div>
+                </div>
+                <div class="form-group mb-3">
+                  <!-- Email address input-->
+                  <input class="form-control" id="email" name="email" type="email" placeholder="Votre Email *" data-sb-validations="required,email"/>
+                  <div class="invalid-feedback" data-sb-feedback="email:required">Vous devez entrer votre email.</div>
+                  <div class="invalid-feedback" data-sb-feedback="email:email">Votre email n'est pas valide</div>
+                </div>
+                <div class="form-group mb-3 mb-md-0">
+                  <!-- Phone number input-->
+                  <input class="form-control" id="phone" name="phone" type="tel" placeholder="Votre téléphone (facultatif)"/>
+                  <div class="invalid-feedback" data-sb-feedback="phone:required">Vous devez entrer un numéro de téléphone</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group form-group-textarea mb-md-0">
+                  <!-- Message input-->
+                  <textarea class="form-control" rows="6" id="message" name="message" placeholder="Votre message (facultatif)"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- Submit success message-->
+            <!---->
+            <!-- This is what your users will see when the form-->
+            <!-- has successfully submitted-->
+            {% for message in app.flashes('contact') %}
+              <div id="submitSuccessMessage my-5">
+                <div class="text-center mb-3 alert alert-success">
+                  <div class="fw-bolder">{{ message }}</div>
+                </div>
+              </div>
+              <br/>
+            {% endfor %}
+            <!-- Submit error message-->
+            <!---->
+            <!-- This is what your users will see when there is-->
+            <!-- an error submitting the form-->
+            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Une erreur s'est produite</div></div>
+            <!-- Submit Button-->
+            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase " id="submitButton" type="submit">Envoyer</button></div>
+          </form>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
       </div>
     </div>
   </div>

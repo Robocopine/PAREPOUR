@@ -8,7 +8,7 @@
 
 <!-- About section-->
 <section id="about" class="bg-light">
-    <div class="container px-4">
+    <div class="container">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-10">
                 <h2 class="fw-light fs-4 mb-5">L'association</h2>
@@ -24,12 +24,19 @@
                         {% include("app/partials/_editModal.html.twig") with {'modalId': about.id } %}
                     {% endif %}
                 {% endif %}
-                <p>
+                <div class="text-justify">
                     <img src="{{ asset('src/img/about-2.jpeg') }}" alt="Supporters image" width="300px" class="img-fluid float-end mx-4 mb-4 rounded" />
                     {{ about.contentFr|raw }}
-                </p>
-                <br>
-                <h2 id="notice" class="fw-light fs-4 mb-5">Mentions légales</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="notice" class="bg-white">
+    <div class="container">
+        <div class="row gx-4 justify-content-center">
+            <div class="col-lg-10">
+                <h2 class="fw-light fs-4 mb-5">Mentions légales</h2>
                 {% if app.user %}
                     {% set user = app.user %}
                     {% if "ROLE_WEBMASTER" in user.roles %}
@@ -51,17 +58,17 @@
 </section>
 
 <!-- Team-->
-<section class="bg-white" id="members">
-    <div class="container px-4">
+<section class="bg-light" id="members">
+    <div class="container">
         <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
+            <div class="col-xl-9 col-lg-10">
                 <h2 class="fw-light fs-4 mb-5">Nos membres</h2>
                 <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
             </div>
-            <div class="row">
+            <div class="row p-5">
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                        <img class="mx-auto border-0" src="{{ asset('src/img/avatar/man.png') }}" alt="..." />
                         <h4>Parveen Anand</h4>
                         <p class="text-muted">Lead Designer</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -71,7 +78,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/2.jpg" alt="..." />
+                        <img class="mx-auto border-0" src="{{ asset('src/img/avatar/woman.png') }}" alt="..." />
                         <h4>Diana Petersen</h4>
                         <p class="text-muted">Lead Marketer</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-twitter"></i></a>
@@ -81,7 +88,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="assets/img/team/3.jpg" alt="..." />
+                        <img class="mx-auto border-0" src="{{ asset('src/img/avatar/man.png') }}" alt="..." />
                         <h4>Larry Parker</h4>
                         <p class="text-muted">Lead Developer</p>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fab fa-twitter"></i></a>

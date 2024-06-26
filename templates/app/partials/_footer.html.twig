@@ -6,9 +6,12 @@
         <hr class="d-md-none">
         <div class="col-md-4 px-5 text-center">
             <p><a class="btn btn-dark" href="{{ path('about')}}#notice">Mentions légales</a></p>
-            <p><a class="btn btn-dark"  href="">Conditions d'utilisations</a></p>
+            <p><a class="btn btn-dark"  href="{{ path('document_terms_conditions') }}">Conditions d'utilisations</a></p>
         </div>
-        <div class="col-md-4 px-5 text-center text-md-end"><br class="d-md-block d-none"/><i class="fa-solid fa-envelope"></i> <a href="mailto:info@parepour.be" class="btn btn-dark">info@parepour.be</a></div>
+        <div class="col-md-4 px-5 text-center">
+            <p><i class="fa-solid fa-envelope"></i> <a href="mailto:info@parepour.be" class="btn btn-dark">info@parepour.be</a></p>
+            <p><a class="btn btn-dark"  href="{{ path('document_privacy_policy') }}">Vie privée</a></p>
+        </div>
     </div>
     <hr>
     <div class="row text-center pt-3 px-5">
@@ -16,7 +19,7 @@
     </div>
     <hr>
     <div class="row text-center pt-3">
-    <div class="col-6">© 2024 Parepour tous droits réservés</div>
-    <div class="col-6">Site développé par <a class="btn btn-dark" target="_blank" href="">"Un coup de pouce pour Luna"</a></div>
+    <div class="col-sm-6 px-sm-0 px-5 mb-sm-0 mb-4">© 2024 Parepour tous droits réservés</div>
+    <div class="col-sm-6 px-sm-0 px-5">Site développé par <a class="btn btn-dark" target="_blank" href="http://kitsweb.be">"Kitsweb"</a></div>
     </div>
 </footer>

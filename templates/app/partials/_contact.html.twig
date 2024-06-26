@@ -1,67 +1,74 @@
 {# templates/app/partials/_contact.html.twig -- Contact Form (Front) #}
 
-<section class="page-section bg-contact border-top border-primary border-5" id="contact">
+<section class="page-section bg-contact border-top border-primary border-5 px-sm-0 px-4" id="contact">
     <div class="container">
-        <div class="text-center">
-            {% if app.user %}
-                {% set user = app.user %}
-                {% if "ROLE_WEBMASTER" in user.roles %}
-                    {% set linkUpdate = "section_edit"  %}
-                    <p class="text-end mt-2">
-                        <button type="button" class="btn btn-primary float-xl-right position-absolute d-block" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{contact.id}}">
-                            <span><i class="fas fa-edit"></i></a></span>
-                        </button>
-                    </p>
-                    {% include("app/partials/_editModal.html.twig") with {'modalId': contact.id } %}
-                {% endif %}
-            {% endif %}
-            <h2 class="fw-light fs-4 mb-4 ">Contact</h2>
-            <div class="px-5 mx-auto my-5" style="max-width:800px;"><p style="text-align:justify!important">{{ contact.contentFr|raw }}</p></div>
+        <div class="row justify-content-center px-2">
+            <div class="col-xl-9 col-lg-10">
+                <div class="text-center">
+                    {% if app.user %}
+                        {% set user = app.user %}
+                        {% if "ROLE_WEBMASTER" in user.roles %}
+                            {% set linkUpdate = "section_edit"  %}
+                            <p class="text-end mt-2">
+                                <button type="button" class="btn btn-primary float-xl-right position-absolute d-block" style="box-shadow:none;" data-bs-toggle="modal" data-bs-target="#updateModal{{contact.id}}">
+                                    <span><i class="fas fa-edit"></i></a></span>
+                                </button>
+                            </p>
+                            {% include("app/partials/_editModal.html.twig") with {'modalId': contact.id } %}
+                        {% endif %}
+                    {% endif %}
+                    <h2 class="fw-light fs-4 mb-4 ">Contact</h2>
+                    <div class="mx-auto my-5 text-justify" ><p class="text-justify">{{ contact.contentFr|raw }}</p></div>
+                </div>
+                 <!-- Submit success message-->
+                <!---->
+                <!-- This is what your users will see when the form-->
+                <!-- has successfully submitted-->
+                {% for message in app.flashes('contact') %}
+                    <div id="submitSuccessMessage my-5">
+                        <div class="text-center mb-3 alert alert-success">
+                            <div class="fw-bolder">{{ message }}</div>
+                        </div>
+                    </div>
+                    <br/>
+                {% endfor %}
+                <form id="contactForm" name="contactForm" action="{{ path('contact') }}" method="post">
+                    <div class="row align-items-stretch mb-5">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <!-- Name input-->
+                                <input class="form-control" id="name" name="name" type="text" placeholder="Votre nom complet *" data-sb-validations="required" required/>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Vous devez entrer votre nom complet</div>
+                            </div>
+                            <div class="form-group">
+                                <!-- Email address input-->
+                                <input class="form-control" id="email" name="email" type="email" placeholder="Votre Email *" data-sb-validations="required,email" required/>
+                                <div class="invalid-feedback" data-sb-feedback="email:required">Vous devez entrer votre email.</div>
+                                <div class="invalid-feedback" data-sb-feedback="email:email">Votre email n'est pas valide</div>
+                            </div>
+                            <div class="form-group mb-md-0">
+                                <!-- Phone number input-->
+                                <input class="form-control" id="phone" name="phone" type="tel" placeholder="Votre téléphone *" data-sb-validations="required" required/>
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">Vous devez entrer un numéro de téléphone</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group form-group-textarea mb-md-0">
+                                <!-- Message input-->
+                                <textarea class="form-control" id="message" name="message" placeholder="Votre message *" data-sb-validations="required" required></textarea>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">Vous devez écrire un message</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit error message-->
+                    <!---->
+                    <!-- This is what your users will see when there is-->
+                    <!-- an error submitting the form-->
+                    <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Une erreur s'est produite</div></div>
+                    <!-- Submit Button-->
+                    <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase " id="submitButton" type="submit">Envoyer</button></div>
+                </form>
+            </div>
         </div>
-        <form id="contactForm" action="{{ path('contact') }}" method="post">
-            <div class="row align-items-stretch mb-5">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <!-- Name input-->
-                        <input class="form-control" id="name" name="name" type="text" placeholder="Votre nom *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">Vous devez entrer votre nom</div>
-                    </div>
-                    <div class="form-group">
-                        <!-- Email address input-->
-                        <input class="form-control" id="email" name="email" type="email" placeholder="Votre Email *" data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">Vous devez entrer votre email.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Votre email n'est pas valide</div>
-                    </div>
-                    <div class="form-group mb-md-0">
-                        <!-- Phone number input-->
-                        <input class="form-control" id="phone" name="phone" type="tel" placeholder="Votre téléphone *" data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">Vous devez entrer un numéro de téléphone</div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group form-group-textarea mb-md-0">
-                        <!-- Message input-->
-                        <textarea class="form-control" id="message" name="message" placeholder="Votre message *" data-sb-validations="required"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">Votre demande de contact a bien été enregistrée</div>
-                </div>
-            </div>
-            <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Une erreur s'est produite</div></div>
-            <!-- Submit Button-->
-            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton" type="submit">Envoyer</button></div>
-        </form>
     </div>
 </section>

@@ -6,29 +6,35 @@
 
 {% block body %}
     <section class="row justify-content-center bg-white">
-        <div class="col-10 px-0">
+        <div class="col-md-10 px-0">
+            {% if app.user %}
+                {% set user = app.user %}
+                {% if "ROLE_WEBMASTER" in user.roles %}
+                    <p class="float-end"><a href="{{ path('achievement_new') }}" class="btn btn-primary">Ajouter une réalisation</a></p>
+                {% endif %}
+            {% endif %}
             <h2>Nos réalisations</h2>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion my-5" id="accordionPanelsStayOpenExample">
                 {% for achievement in pagination.data %}
                     <div class="accordion-item">
-                        <h2 class="accordion-header">
+                        <div class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                 <div class="container-fluid px-0">
                                     <div class="row">
-                                        <div class="col-md-5 text-md-start">Title</div>
-                                        <div class="col-md-5 pt-md-0 text-md-start text-end pt-3 d-md-block d-none">Date</div>
-                                        <div class="col-md-2 col-5 pt-md-0 pt-3 text-center d-md-block d-none">Montant</div>
+                                        <div class="col-md-5 text-md-start">{{achievement.title}}</div>
+                                        <div class="col-md-5 pt-md-0 text-md-start text-end pt-3 d-md-block d-none">{{ achievement.date|date('d-m-Y') }}</div>
+                                        <div class="col-md-2 col-5 pt-md-0 pt-3 text-center d-md-block d-none"></div>
                                     </div>
                                 </div>
                             </button>
-                        </h2>
+                        </div>
                         <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                             <div class="accordion-body row">
-                                <p class="col-6 text-start d-md-none d-inline-block">Date</p>
-                                <p class="col-6 text-end d-md-none d-inline-block">Montant</p>
+                                <p class="col-6 text-start d-md-none d-inline-block">{{ achievement.date|date('d-m-Y') }}</p>
+                                <p class="col-6 text-end d-md-none d-inline-block"></p>
                                 <hr class="d-md-none">
                                 <p class="px-3 pt-3">
-                                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                                    {{achievement.descriptionFr}}
                                 </p>
                             </div>
                         </div>

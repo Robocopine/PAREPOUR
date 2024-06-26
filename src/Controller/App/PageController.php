@@ -55,20 +55,6 @@ class PageController extends AbstractController
         ]);
     }
 
-    #[Route('/réalisations/{page<\d+>?1}', name: 'achievements')]
-    public function achievements(PaginationService $pagination, $page): Response
-    {
-        $pagination->setEntityClass(Achievement::class)
-                ->setLimit(9)
-                ->setPage($page);
-
-        return $this->render('app/page/achievements.html.twig', [
-            'controller_name' => 'Réalisations',
-            'pagination' => $pagination,
-            'vars' => $this->vars,
-        ]);
-    }
-
     #[Route('/sponsors', name: 'sponsors')]
     public function sponsors(): Response
     {
@@ -77,13 +63,5 @@ class PageController extends AbstractController
             'vars' => $this->vars,
         ]);
     }
-
-    #[Route('/contact', name: 'contact')]
-    public function contact(): Response
-    {
-        return $this->render('app/page/contact.html.twig', [
-            'controller_name' => 'Contact',
-            'vars' => $this->vars
-        ]);
-    }
+   
 }

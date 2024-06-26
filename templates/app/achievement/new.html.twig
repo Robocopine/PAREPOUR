@@ -1,0 +1,12 @@
+{# templates/admin/achievement/new.html.twig -- Create a achievement (Admin)  #}
+
+{% extends 'app/base.html.twig' %}
+
+{% block title %} {{ controller_name }} {% endblock %}
+
+{% block body %}
+
+    {{ include('admin/partials/_form.html.twig', {'button_label': 'Créer', 'title': 'Nouvelle réalisation'}) }}
+
+    <a href="{{ path('achievement_index') }}">Retour à la liste des réalisations</a>
+{% endblock %}

@@ -7,28 +7,60 @@ use Mailjet\Resources;
 
 class Mail {
 
-  public function send($to_email, $to_name, $subject, $content){
+  public function sendToUser($to_email, $to_name, $to_phone, $template_id, $subject, $message){
     $mj = new Client($_ENV['MAILJET_APIKEY'], $_ENV['MAILJET_SECRETKEY'],true,['version' => 'v3.1']);
     $body = [
       'Messages' => [
         [
           'From' => [
             'Email' => "info@parepour.be",
-            'Name' => "Auguste Weemaels"
+            'Name' => "PAREPOUR"
           ],
           'To' => [
             [
               'Email' => $to_email,
-              'Name' => $to_name
+              'Name' => $to_name,
             ]
           ],
-          'TemplateID' => 5092812,
+          'TemplateID' => $template_id,
           'TemplateLanguage' => true,
           'Subject' => $subject,
           'Variables' => [
-            'title' => $title,
-            'content' => $content,
-            'button' => $button,
+            'message' => $message,
+            'fullName' => $to_name,
+            'email' => $to_email,
+            'phone' => $to_phone
+          ]
+        ]
+      ]
+    ];
+    $response = $mj->post(Resources::$Email, ['body' => $body]);
+    $response->success();
+  }
+
+  public function sendToPAREPOUR($to_email, $to_name, $to_phone, $template_id, $subject, $message){
+    $mj = new Client($_ENV['MAILJET_APIKEY'], $_ENV['MAILJET_SECRETKEY'],true,['version' => 'v3.1']);
+    $body = [
+      'Messages' => [
+        [
+          'From' => [
+            'Email' => "info@parepour.be",
+            'Name' => $to_name
+          ],
+          'To' => [
+            [
+              'Email' => "info@parepour.be",
+              'Name' => 'PAREPOUR'
+            ]
+          ],
+          'TemplateID' => $template_id,
+          'TemplateLanguage' => true,
+          'Subject' => $subject,
+          'Variables' => [
+            'message' => $message,
+            'fullName' => $to_name,
+            'email' => $to_email,
+            'phone' => $to_phone
           ]
         ]
       ]

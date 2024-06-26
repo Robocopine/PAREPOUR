@@ -4,6 +4,10 @@
  * TYPOGRAPHY
  */
 
+.text-justify{
+  text-align: justify!important;
+}
+
 h2{
     font-variant-caps: small-caps;
     text-underline-offset: 8px;
@@ -146,3 +150,5 @@ section#contact form#contactForm .form-group {
     margin-top: 1.5rem;
     margin-bottom: 0;
   }
+
+ 

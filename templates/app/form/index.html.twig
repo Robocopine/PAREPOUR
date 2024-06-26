@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<title>Hello FormController!</title>
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/Applications/MAMP/htdocs/PAREPOUR/src/Controller/App/FormController.php'|file_link(0) }}">src/Controller/App/FormController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/Applications/MAMP/htdocs/PAREPOUR/templates/app/form/index.html.twig'|file_link(0) }}">templates/app/form/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}
